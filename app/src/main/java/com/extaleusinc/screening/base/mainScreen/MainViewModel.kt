@@ -83,13 +83,14 @@ class MainViewModel constructor(
         when (action) {
 //            MainAction.ConsumeError -> {}
             is MainAction.ChangeSelectedOption -> {
-                // реквест на получение данных, если 200:
-                _state.update { it.copy(showError = false, selectedOption = action.selectedOption) }
+                // реквест на получение данных, если 200 showError = false:
+                _state.update {
+                    it.copy(
+                        selectedOption = action.selectedOption,
+                        showError = action.selectedOption != 0
+                    )
+                }
                 // иначе showError = true
-            }
-
-            is MainAction.SetShowError -> {
-                _state.update { it.copy(showError = action.newShowError) }
             }
 
             is MainAction.OnCardClick -> TODO("логика при нажатии на карточку компании")
@@ -114,7 +115,6 @@ sealed class MainAction {
 //    data object ConsumeError : MainAction()
     data class ChangeSelectedOption(val selectedOption: Int) : MainAction()
     data class OnCardClick(val project: ProjectInfo) : MainAction()
-    data class SetShowError(val newShowError: Boolean) : MainAction()
 }
 
 // Модели должны лежать в другом модуле, например com.extaleusinc.data.models

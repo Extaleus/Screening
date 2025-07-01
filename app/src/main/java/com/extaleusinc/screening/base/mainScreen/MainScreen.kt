@@ -16,6 +16,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.extaleusinc.screening.base.Constants.ABOUT_APP
+import com.extaleusinc.screening.base.Constants.EMPTY_STR
+import com.extaleusinc.screening.base.Constants.PROJECTS_SURF
+import com.extaleusinc.screening.base.Constants.STUFF
 import com.extaleusinc.screening.base.projectsSurf.ProjectsSurfScreen
 import com.extaleusinc.screening.base.uiHelpers.CustomAsyncImage
 import com.extaleusinc.screening.base.uiHelpers.ErrorScreen
@@ -31,13 +35,13 @@ fun MainScreen(modifier: Modifier, viewModel: MainViewModel) {
 
 @Composable
 fun MainScreen(modifier: Modifier, state: MainState, onAction: (MainAction) -> Unit) {
-    val options = remember { listOf("Проекты Surf", "Сотрудники", "О приложении") }
+    val options = remember { listOf(PROJECTS_SURF, STUFF, ABOUT_APP) }
 
     Column(modifier = modifier) {
 //        CustomTopBar() // можно использовать здесь вместо scaffold+topBar
 
         ProfilePart(
-            Modifier, state.profile?.name ?: "", state.profile?.profileImg ?: ""
+            Modifier, state.profile?.name ?: EMPTY_STR, state.profile?.profileImg ?: EMPTY_STR
         ) {
             // обработка клика по профилю onAction(MainAction.ProfileClick())
         }
@@ -49,16 +53,13 @@ fun MainScreen(modifier: Modifier, state: MainState, onAction: (MainAction) -> U
             underlineError = state.showError
         ) { onAction(MainAction.ChangeSelectedOption(it)) }
 
-        if (!state.showError) { // сделал бы по-другому, если бы были норм реквесты и тд, возможно моргание при композиции
+        if (!state.showError) {
             when (state.selectedOption) {
                 0 -> {
-                    onAction(MainAction.SetShowError(false))
                     state.projects?.let { project -> ProjectsSurfScreen(project){onAction(MainAction.OnCardClick(it))} }
                 }
 
-                1, 2 -> {
-                    onAction(MainAction.SetShowError(true))
-                }
+                1, 2 -> {}
             }
         } else {
             ErrorScreen(Modifier) { /*Логика по нажатию обновить*/ }

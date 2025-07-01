@@ -36,9 +36,10 @@ fun CustomAsyncImage(
     contentDescription: String? = null,
     errorResId: Int = R.color.black
 ) {
-    val imageLoader = LocalContext.current.imageLoader.newBuilder().logger(DebugLogger()).build()
+    val context = LocalContext.current
+    val imageLoader = context.imageLoader.newBuilder().logger(DebugLogger()).build()
     val painter = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current).data(url)
+        model = ImageRequest.Builder(context).data(url)
             .addHeader(stringResource(R.string.accept_caps), stringResource(R.string.jpeg_mime_type)) // Лучше использовать константы
             .error(errorResId).crossfade(true).build(), imageLoader = imageLoader
     )
