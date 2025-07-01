@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Screening</string>
+
+    <string name="hello">Привет,</string>
+    <string name="team_not_collect">Команда не собрана</string>
+    <string name="accept_caps">ACCEPT</string>
+    <string name="jpeg_mime_type">JPEG_MIME_TYPE</string>
+    <string name="something_went_wrong">Что-то пошло не так!</string>
+    <string name="please_repeat">Пожалуйста, повторите попытку</string>
+    <string name="refresh">Обновить</string>
+</resources>
