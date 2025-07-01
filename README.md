@@ -27,5 +27,5 @@
 - Проблема: В `ImageRequest` используется прямой URL
 - Решение: Использовать HTTPS и доменные ограничения (нет API для примера)
 
-![изображение](https://github.com/user-attachments/assets/cf1b6bef-525e-4f4c-93c4-fd79058e2e82)
-![изображение](https://github.com/user-attachments/assets/5ebe925e-86ba-4ebd-bfd9-badecbe09416)
+| ![изображение](https://github.com/user-attachments/assets/cf1b6bef-525e-4f4c-93c4-fd79058e2e82) | ![изображение](https://github.com/user-attachments/assets/5ebe925e-86ba-4ebd-bfd9-badecbe09416) |
+|--------|--------|
